@@ -1,0 +1,51 @@
+<div class="map-wrapper">
+  <div class="sidebar-section">
+    <div class="card"> <!-- This single card will now stretch to full height -->
+      <div class="data-layers-container">
+        <h3>Data Layers</h3>
+        <p class="subtitle">Toggle data layers on the map</p>
+        <div class="layer">
+          <span>Traffic Zones <b>156</b></span>
+          <label class="switch"><input type="checkbox" data-layer="traffic" checked><span class="slider"></span></label>
+        </div>
+        <div class="layer">
+          <span>Healthcare Facilities <b>47</b></span>
+          <label class="switch"><input type="checkbox" data-layer="health" checked><span class="slider"></span></label>
+        </div>
+        <div class="layer">
+          <span>Educational Institutions <b>89</b></span>
+          <label class="switch"><input type="checkbox" data-layer="edu" checked><span class="slider"></span></label>
+        </div>
+        <div class="layer">
+          <span>Population Density <b>234</b></span>
+          <label class="switch"><input type="checkbox" data-layer="pop" checked><span class="slider"></span></label>
+        </div>
+      </div>
+      <!-- The map controls are now inside the same card, pushed to the bottom -->
+      <div class="map-controls" style="padding-top: 20px; border-top: 1px solid #eee;">
+        <h3>Map Controls</h3>
+        <button id="zoomIn">Zoom In</button>
+        <button id="zoomOut">Zoom Out</button>
+        <button id="resetView">Reset View</button>
+        <button class="location" id="myLocation">My Location</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-container">
+    <div class="tags">
+      <span class="tag traffic" data-tag="traffic">Traffic Zones: 156 items</span>
+      <span class="tag health" data-tag="health">Healthcare Facilities: 47 items</span>
+      <span class="tag edu" data-tag="edu">Educational Institutions: 89 items</span>
+      <span class="tag pop" data-tag="pop">Population Density: 234 items</span>
+    </div>
+
+    <div class="map-box">
+      <i id="map-icon" class="fa-solid fa-location-dot fa-2x"></i>
+      <h2>Interactive Map Loading</h2>
+      <p>Map visualization with data layers will appear here</p>
+    </div>
+
+    <div class="map-footer">© UrbanEyes Geospatial Platform</div>
+  </div>
+</div>

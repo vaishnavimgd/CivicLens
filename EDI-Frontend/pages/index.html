@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UrbanEyes Dashboard</title>
+  <link rel="stylesheet" href="../public/css/style.css">
+  <!-- Using Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <h2>
+      <span class="logo-icon">🌐</span>
+      <span class="logo-text">
+CivicLens</span>
+     </h2>
+    <a href="#" data-page="map.html"><i class="fa-solid fa-map"></i> <span>Map View</span></a>
+    <a href="#" data-page="analytics.html"><i class="fa-solid fa-chart-line"></i> <span>Analytics</span></a>
+    <a href="#" data-page="upload.html"><i class="fa-solid fa-upload"></i> <span>Upload Data</span></a>
+    <a href="#" data-page="settings.html"><i class="fa-solid fa-gear"></i> <span>Settings</span></a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main" id="main">
+    <!-- Navbar -->
+    <div class="navbar">
+      <button id="toggle-btn">☰</button>
+      <input type="text" placeholder="Search..." id="search-bar">
+    </div>
+    <!--  end of  the navbar-->
+
+    <!-- Page Content -->
+    <div class="content" id="content-area">
+      <!-- Default content loads here -->
+
+    </div>
+  </div>
+
+  <script src="../public/js/script.js"></script>
+</body>
+</html>

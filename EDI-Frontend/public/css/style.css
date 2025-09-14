@@ -1,0 +1,434 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background: #f8f9fa;
+}
+
+/* Sidebar */
+
+/* Sidebar Title */
+.sidebar h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 20px 10px;
+  font-size: 18px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Logo always visible */
+.sidebar .logo-icon {
+  font-size: 22px;
+   min-width: 20px; /* same width as menu icons */
+  text-align: center;
+} 
+/* Hide only the text on collapse */
+.sidebar.collapsed .logo-text {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  margin: 0;
+}
+
+.sidebar {
+  width: 220px;
+  background: #f4f5f9;
+  border-right: 1px solid #ddd;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: width 0.3s ease;
+  z-index: 100;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* .sidebar.collapsed h2,
+.sidebar.collapsed span {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  margin: 0;
+} */
+
+.sidebar a {
+  text-decoration: none;
+  padding: 10px;
+  color: #333;
+  margin: 8px 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.sidebar.collapsed a span{
+  opacity:0;
+  visibility: hidden;
+  width: 0;
+  margin: 0;
+}
+.sidebar.collapsed h2 {
+  margin-left: 2px; /* match icon alignment */
+}
+
+.sidebar a:hover {
+  background: #ddd;
+}
+
+/* Icon size inside sidebar */
+.sidebar a i {
+  font-size: 18px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Main Area */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 220px; /* space for sidebar */
+  transition: margin-left 0.3s ease;
+  height: 100vh;      /* take full height */
+}
+.main.full {
+  margin-left: 60px; /* shrink space when sidebar collapsed */
+}
+
+/* Navbar */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+}
+
+.navbar button {
+      margin-left: 10px;
+  font-size: 18px;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: none;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.navbar button:hover {
+  background: #ddd;
+}
+
+#search-bar {
+  width: 200px; /* reduced width */
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+/* Content Area */
+.content {
+  padding: 20px;
+  flex:1;
+  overflow-y: auto;
+}
+
+.section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+}
+
+/* === Map Page Layout === */
+.map-wrapper {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* Sidebar section (inside map) */
+.sidebar-section {
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* height: fit-content; is removed to allow this container to stretch */
+}
+
+/* Make the card inside the sidebar section grow to full height */
+.sidebar-section .card {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #1d2530;
+}
+
+.card p.subtitle {
+  margin-bottom: 10px; /* Adjust margin for better flexbox spacing */
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.data-layers-container {
+  flex-grow: 1; /* Make this container fill the available vertical space */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; /* Distribute layers evenly to fill the space */
+}
+
+.layer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0; /* Let flexbox handle the spacing */
+  font-size: 14px;
+}
+
+/* Toggle Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 20px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px; width: 14px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .slider {
+  background: #2563eb;
+}
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+/* Buttons in map controls */
+.map-controls button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #f1f5f9;
+}
+.map-controls button.location {
+  background: #14b8a6;
+  color: #fff;
+}
+
+/* === Map Container === */
+.map-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+/* Tags */
+.tags {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+  color: white;
+}
+.tag.traffic { background: #ef4444; }
+.tag.health { background: #22c55e; }
+.tag.edu { background: #8b5cf6; }
+.tag.pop { background: #3b82f6; }
+
+/* Map Box Placeholder */
+.map-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  text-align: center;
+}
+.map-box i {
+  color: #2563eb;
+  /* Add transition for smooth zooming */
+  transition: transform 0.2s ease-in-out;
+}
+
+.map-box h2 {
+  margin: 10px 0 5px;
+  font-size: 20px;
+  color: #1d2530;
+}
+.map-box p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Footer */
+.map-footer {
+  padding: 15px;
+  text-align: right;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Animation for 'My Location' button */
+@keyframes pulse-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.pulse {
+  animation: pulse-animation 0.5s ease-in-out;
+}
+
+/* Utility class for hiding elements */
+.hidden {
+  display: none !important;
+}
+
+/* === Dark Mode === */
+body.dark-mode {
+  background: #111827;
+  color: #e5e7eb;
+}
+
+body.dark-mode .sidebar {
+  background: #1f2937;
+  border-right-color: #374151;
+}
+
+body.dark-mode .sidebar h2,
+body.dark-mode .sidebar a {
+  color: #d1d5db;
+}
+
+body.dark-mode .sidebar a:hover {
+  background: #374151;
+  color: #fff;
+}
+
+body.dark-mode .navbar {
+  background: #1f2937;
+  border-bottom-color: #374151;
+}
+
+body.dark-mode .navbar button {
+  background: #374151;
+  color: #d1d5db;
+}
+
+body.dark-mode .navbar button:hover {
+  background: #4b5563;
+}
+
+body.dark-mode #search-bar {
+  background: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+body.dark-mode .section,
+body.dark-mode .card,
+body.dark-mode .map-container {
+  background: #1f2937;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .section,
+body.dark-mode .section label {
+  color: #e5e7eb;
+}
+
+body.dark-mode .card h3,
+body.dark-mode .map-box h2 {
+  color: #f9fafb;
+}
+
+body.dark-mode .map-box i {
+  color: #3b82f6; /* Lighter blue for dark mode */
+}
+
+body.dark-mode .card p.subtitle,
+body.dark-mode .layer,
+body.dark-mode .map-box p,
+body.dark-mode .map-footer {
+  color: #9ca3af;
+}
+
+body.dark-mode .map-controls button {
+    background: #374151;
+    color: #9ca3af;
+}
+
+body.dark-mode .map-controls button:hover {
+    background: #4b5563;
+}
+
+body.dark-mode .map-controls button.location {
+  background: #14b8a6; /* Keep brand color */
+  color: #fff;
+}
